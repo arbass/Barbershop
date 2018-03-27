@@ -16,9 +16,10 @@ module.exports = function(grunt) {
     },
     watch: {
       styles: {
-        files: ['less/**/*.less'], // which files to watch
+        files: ['less/**/*.less', '*.html'], // which files to watch
         tasks: ['less'],
         options: {
+          livereload: true,
           nospawn: true
         }
       }
