@@ -3,11 +3,12 @@ ymaps.ready(init);
 
 function init(){
     var myMap = new ymaps.Map("map", {
-	    center: [51.13534215544706, 71.40871289967193], // Астана
-	    zoom: 14
+	    center: [51.13534215544706, 71.40871289967193], // Астана[51.13514640429517,71.41381982563632]
+	    zoom: 14,
+      controls: ['zoomcontrol']
     });
 
-    var myMainIcon = new ymaps.Placemark([51.128050, 71.441541], {}, {
+    var myMainIcon = new ymaps.Placemark([51.13549, 71.418542], {}, {
 	    iconLayout: 'default#image',
 	    iconImageHref: 'https://uploads-ssl.webflow.com/5f1e897ab5a619ea278df9f6/5f2a6060669e3160a089f6b5_map-icon-atlant.svg',
 	    iconImageSize: [94, 120],
@@ -44,9 +45,9 @@ function init(){
 	    iconImageSize: [52, 52],
     })
 
-    // Коллекции end	
+    // Коллекции end
 
-    myMap.geoObjects.add(myMainIcon); 
+    myMap.geoObjects.add(myMainIcon);
 
     funCollection
         .add(new ymaps.Placemark([51.128586, 71.438297], {
@@ -399,10 +400,10 @@ function init(){
     let lengthHab = habCollection._collectionComponent._baseArrayComponent._children.length;
     let lengthDiff = diffCollection._collectionComponent._baseArrayComponent._children.length;
 
-    funHtmlEl = document.getElementById("fun");
-    eduHtmlEl = document.getElementById("edu");
-    habHtmlEl = document.getElementById("hab");
-    diffHtmlEl = document.getElementById("diff");
+    funHtmlEl = document.getElementById("count-other");
+    eduHtmlEl = document.getElementById("count-health");
+    habHtmlEl = document.getElementById("count-edu");
+    diffHtmlEl = document.getElementById("count-fun");
 
     funHtmlEl.innerHTML = lengthFun;
     eduHtmlEl.innerHTML = lengthEdu;
@@ -414,7 +415,7 @@ function init(){
 
     document.getElementById('fun').onclick = function () {
     	myMap.geoObjects.add(funCollection).remove(eduCollection).remove(habCollection).remove(diffCollection);
-    };    
+    };
 
     document.getElementById('edu').onclick = function () {
     	myMap.geoObjects.remove(funCollection).add(eduCollection).remove(habCollection).remove(diffCollection);
@@ -432,5 +433,3 @@ function init(){
 
 
 }
-
-
