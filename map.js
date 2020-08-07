@@ -5,7 +5,7 @@ function init(){
     var myMap = new ymaps.Map("map", {
 	    center: [51.13534215544706, 71.40871289967193], // Астана[51.13514640429517,71.41381982563632]
 	    zoom: 14,
-      controls: ['zoomcontrol']
+      controls: ['zoomControl']
     });
 
     var myMainIcon = new ymaps.Placemark([51.13549, 71.418542], {}, {
