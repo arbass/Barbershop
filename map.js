@@ -1,19 +1,28 @@
-
 ymaps.ready(init);
 
 function init(){
-    var myMap = new ymaps.Map("map", {
-	    center: [51.12500395052903,71.41775887273171], // Астана[51.13514640429517,71.41381982563632]
-	    zoom: 14,
-      controls: ['zoomControl']
-    });
+    if (document.documentElement.clientWidth > 992) {
+        var myMap = new ymaps.Map("map", {
+            center: [51.13399939139281,71.39489089722255], // Астана[51.13514640429517,71.41381982563632]
+            zoom: 14,
+          controls: ['zoomControl']
+        });
+    }
+    if (document.documentElement.clientWidth < 992) {
+        var myMap = new ymaps.Map("map", {
+            center: [51.13151981815994,71.42202704002592], // Астана[51.13514640429517,71.41381982563632]
+            zoom: 14,
+          controls: ['zoomControl']
+        });
+    }
+
 
     var myMainIcon = new ymaps.Placemark([51.13549, 71.418542], {}, {
-	    iconLayout: 'default#image',
-	    iconImageHref: 'https://uploads-ssl.webflow.com/5f1e897ab5a619ea278df9f6/5f2a6060669e3160a089f6b5_map-icon-atlant.svg',
-	    iconImageSize: [94, 120],
-	    // iconImageOffset: [-3, -42]
-	});
+        iconLayout: 'default#image',
+        iconImageHref: 'https://uploads-ssl.webflow.com/5f1e897ab5a619ea278df9f6/5f2a6060669e3160a089f6b5_map-icon-atlant.svg',
+        iconImageSize: [94, 120],
+        // iconImageOffset: [-3, -42]
+    });
 
     // Коллекции
 
@@ -40,14 +49,12 @@ function init(){
 
     diffCollection = new ymaps.GeoObjectCollection(null, {
         preset: 'islands#blueIcon',
-	    iconLayout: 'default#image',
-	    iconImageHref: 'https://uploads-ssl.webflow.com/5f1e897ab5a619ea278df9f6/5f2a6060f5fb1662f96008f1_map-point-health.svg',
-	    iconImageSize: [52, 52],
+        iconLayout: 'default#image',
+        iconImageHref: 'https://uploads-ssl.webflow.com/5f1e897ab5a619ea278df9f6/5f2a6060f5fb1662f96008f1_map-point-health.svg',
+        iconImageSize: [52, 52],
     })
 
     // Коллекции end
-
-    myMap.geoObjects.add(myMainIcon);
 
     funCollection
         .add(new ymaps.Placemark([51.128586, 71.438297], {
@@ -414,22 +421,22 @@ function init(){
 
 
     document.getElementById('fun').onclick = function () {
-    	myMap.geoObjects.add(funCollection).remove(eduCollection).remove(habCollection).remove(diffCollection);
+        myMap.geoObjects.add(funCollection).remove(eduCollection).remove(habCollection).remove(diffCollection).add(myMainIcon);
     };
 
     document.getElementById('edu').onclick = function () {
-    	myMap.geoObjects.remove(funCollection).add(eduCollection).remove(habCollection).remove(diffCollection);
+        myMap.geoObjects.remove(funCollection).add(eduCollection).remove(habCollection).remove(diffCollection).add(myMainIcon);
     };
 
     document.getElementById('hab').onclick = function () {
-	    myMap.geoObjects.remove(funCollection).remove(eduCollection).add(habCollection).remove(diffCollection);
+        myMap.geoObjects.remove(funCollection).remove(eduCollection).add(habCollection).remove(diffCollection).add(myMainIcon);
     };
 
     document.getElementById('diff').onclick = function () {
-    	myMap.geoObjects.remove(funCollection).remove(eduCollection).remove(habCollection).add(diffCollection);
+        myMap.geoObjects.remove(funCollection).remove(eduCollection).remove(habCollection).add(diffCollection).add(myMainIcon);
     };
 
 
-
+    myMap.geoObjects.add(myMainIcon);
 
 }
